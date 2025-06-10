@@ -96,8 +96,11 @@ const getMuiListItemButtonThemeOverrides = () => {
                             backgroundColor: theme.palette.action.hover,
                         },
                         '&.MuiListItemButton-root.disabled-hover': {
-                            pointerEvents: 'none',
-                            backgroundColor: 'transparent',
+                            pointerEvents: 'none !important',
+                            backgroundColor: 'transparent !important',
+                            '&:hover': {
+                                backgroundColor: 'transparent !important',
+                            },
                         },
                         '&.Mui-focusVisible': {
                             backgroundColor: 'transparent',
@@ -150,6 +153,7 @@ const ListItemButton = (_a) => {
     const theme = (0, material_1.useTheme)();
     const { secondaryActionButton } = props, restProps = __rest(props, ["secondaryActionButton"]);
     const composedClassName = [props.className, disabledHover ? 'disabled-hover' : ''].filter(Boolean).join(' ');
+    window.console.log('ListItemButton classes:', composedClassName); // Debug line
     return (react_1.default.createElement(ListItemButton_1.default, Object.assign({}, restProps, { className: composedClassName, tabIndex: disabledHover ? -1 : props.tabIndex, "aria-disabled": disabledHover ? 'true' : undefined }),
         props.children,
         secondaryActionButton

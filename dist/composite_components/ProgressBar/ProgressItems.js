@@ -171,6 +171,13 @@ const StyledList = (0, material_1.styled)(List_1.default)((props) => {
                     },
                 },
             },
+            '.MuiListItemButton-root.disabled-hover': {
+                pointerEvents: 'none !important',
+                backgroundColor: 'transparent !important',
+                '&:hover': {
+                    backgroundColor: 'transparent !important',
+                },
+            },
         },
     });
 });
