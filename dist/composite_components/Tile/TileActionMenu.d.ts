@@ -7,6 +7,8 @@ export interface ITileActionMenuProps {
     menuSize?: string;
     disabled?: boolean;
     hasThumbnail?: boolean;
+    isTrash?: boolean;
+    trashInfoTooltip?: string;
 }
 export declare enum TileActionTestIds {
     TILE_ACTION_MENU = "basic-menu",

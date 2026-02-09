@@ -1,6 +1,6 @@
 "use strict";
 /* ======================================================================== *
- * Copyright 2024 HCL America Inc.                                          *
+ * Copyright 2024, 2026 HCL America Inc.                                    *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
  * You may obtain a copy of the License at                                  *
@@ -70,9 +70,43 @@ const StyledSyncIcon = (0, styles_1.styled)('div')(({ theme }) => {
         },
     };
 });
+const StyledLockNotice = (0, styles_1.styled)('div')(() => {
+    return {
+        position: 'absolute',
+        top: '12px',
+        right: '12px',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '4px',
+        gap: '4px',
+        height: '24px',
+        background: 'rgba(30, 30, 30, 0.8)',
+        borderRadius: '2px',
+        flex: 'none',
+        order: 1,
+        flexGrow: 0,
+        zIndex: 1,
+    };
+});
+// Using built-in typography variant="body2"
+const StyledLockNoticeText = (0, styles_1.styled)(Typography_1.default)(() => {
+    return {
+        width: '45px',
+        height: '16px',
+        fontSize: '12px',
+        lineHeight: '16px',
+        letterSpacing: '0px',
+        color: 'rgba(255, 255, 255, 0.7)',
+        flex: 'none',
+        order: 1,
+        flexGrow: 0,
+    };
+});
 const StyledImageListItem = (0, styles_1.styled)(material_1.ImageListItem)(({ theme }) => {
     const { disabled, isChecked } = react_1.default.useContext(ImageListContext);
     return {
+        position: 'relative',
         backgroundColor: isChecked ? theme.palette.action.selectedOpacityModified : theme.palette.background.default,
         border: `1px solid ${theme.palette.border.secondary}`,
         borderRadius: `${theme.spacing(0.5)}`,
@@ -127,7 +161,7 @@ const StyledSubTitle = (0, styles_1.styled)(material_1.Box)(({ theme, disabled }
         color: disabled ? theme.palette.text.disabled : theme.palette.text.secondary,
     };
 });
-const CustomCheckbox = (0, styles_1.styled)(Checkbox_1.default)(({ theme }) => {
+const CustomCheckbox = (0, styles_1.styled)(Checkbox_1.default)(() => {
     return {
         '&.MuiCheckbox-root': {
             padding: '0px',
@@ -190,7 +224,9 @@ const Tile = (props) => {
     const [isTitleOverflowing, setIsTitleOverflowing] = (0, react_1.useState)(false);
     const [isSubTitleOverflowing, setIsSubTitleOverflowing] = (0, react_1.useState)(false);
     const [isOverlayVisible, setIsOverlayVisible] = (0, react_1.useState)(false);
-    const { itemId, imageUrl, avatar, itemClickedAction, handlePreviewAction, tileActions, activeItem, imageAltName, ariaLabel, ariaLabelledBy, overflowTooltip, tileRef, hideAvatarIfImageIsLoaded, subTitle, menuSize, hasCheckBox, hasThumbnail, disabled, hoverPreviewMenu, } = props;
+    const { itemId, imageUrl, avatar, itemClickedAction, handlePreviewAction, tileActions, activeItem, imageAltName, ariaLabel, ariaLabelledBy, overflowTooltip, tileRef, hideAvatarIfImageIsLoaded, subTitle, menuSize, hasCheckBox, hasThumbnail, disabled, hoverPreviewMenu, isTrash, trashInfoTooltip, lockNoticeText, } = props;
+    // Show lock notice for media tiles (hasThumbnail=true) in trash view when lockNoticeText has content
+    const showLockNotice = isTrash && hasThumbnail && !!lockNoticeText;
     (0, react_1.useEffect)(() => {
         const titleElement = titleRef.current;
         const subTitleElement = subTitleRef.current;
@@ -232,6 +268,8 @@ const Tile = (props) => {
                 }
             }, tabIndex: 0, role: "listitem", "aria-current": activeItem === itemId, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, ref: tileRef },
             props.syncIcon && (react_1.default.createElement(StyledSyncIcon, null, props.syncIcon)),
+            showLockNotice && (react_1.default.createElement(StyledLockNotice, null,
+                react_1.default.createElement(StyledLockNoticeText, { variant: "body2" }, lockNoticeText))),
             (imageUrl && !avatar && hasThumbnail) && (react_1.default.createElement(ImageContainer, null,
                 react_1.default.createElement("img", { style: {
                         display: 'block',
@@ -283,6 +321,6 @@ const Tile = (props) => {
                         justifyContent: 'space-between',
                         width: '100%',
                     } },
-                    react_1.default.createElement(TileActionBar_1.default, { itemId: itemId, actionList: tileActions, overflowTooltip: overflowTooltip, menuSize: menuSize, disabled: disabled, hasThumbnail: hasThumbnail }))) }))));
+                    react_1.default.createElement(TileActionBar_1.default, { itemId: itemId, actionList: tileActions, overflowTooltip: overflowTooltip, menuSize: menuSize, disabled: disabled, hasThumbnail: hasThumbnail, isTrash: isTrash, trashInfoTooltip: trashInfoTooltip }))) }))));
 };
 exports.default = Tile;

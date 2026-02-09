@@ -7,6 +7,8 @@ export interface ITileActionBarProps {
     menuSize?: string;
     disabled?: boolean;
     hasThumbnail?: boolean;
+    isTrash?: boolean;
+    trashInfoTooltip?: string;
 }
 declare const TileActionBar: React.FC<ITileActionBarProps>;
 export default TileActionBar;

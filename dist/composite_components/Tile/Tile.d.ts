@@ -31,6 +31,9 @@ export interface TilePropsType {
     disabled?: boolean;
     syncIcon?: ReactNode;
     hoverPreviewMenu?: string;
+    isTrash?: boolean;
+    trashInfoTooltip?: string;
+    lockNoticeText?: string;
 }
 export declare enum TileTestIds {
     TILE_PREVIEW = "preview-icon-view"

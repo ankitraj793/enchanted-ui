@@ -1,6 +1,6 @@
 "use strict";
 /* ======================================================================== *
- * Copyright 2024 HCL America Inc.                                          *
+ * Copyright 2024, 2026 HCL America Inc.                                    *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
  * you may not use this file except in compliance with the License.         *
  * You may obtain a copy of the License at                                  *
@@ -37,7 +37,7 @@ const TileActionBar = (props) => {
         hasThumbnail && (actionList) && (react_1.default.createElement(react_1.default.Fragment, null,
             returnActionIcon(0),
             (actionList.length === 2) && (returnActionIcon(1)),
-            (actionList.length > 2) && (react_1.default.createElement(TileActionMenu_1.default, { itemId: itemId, actionList: actionList, overflowTooltip: overflowTooltip, menuSize: menuSize, disabled: disabled })))),
-        (!hasThumbnail && actionList) && (react_1.default.createElement(TileActionMenu_1.default, { itemId: itemId, actionList: actionList, overflowTooltip: overflowTooltip, menuSize: menuSize, disabled: disabled, hasThumbnail: hasThumbnail }))));
+            (actionList.length > 2) && (react_1.default.createElement(TileActionMenu_1.default, { itemId: itemId, actionList: actionList, overflowTooltip: overflowTooltip, menuSize: menuSize, disabled: disabled, hasThumbnail: hasThumbnail, isTrash: props.isTrash, trashInfoTooltip: props.trashInfoTooltip })))),
+        (!hasThumbnail && actionList) && (react_1.default.createElement(TileActionMenu_1.default, { itemId: itemId, actionList: actionList, overflowTooltip: overflowTooltip, menuSize: menuSize, disabled: disabled, hasThumbnail: hasThumbnail, isTrash: props.isTrash, trashInfoTooltip: props.trashInfoTooltip }))));
 };
 exports.default = TileActionBar;
