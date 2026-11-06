@@ -1,5 +1,5 @@
 import React from 'react';
-import { Literals, ProgressBarLocalization } from './ProgressBar';
+import { Literals, ProgressBarLocalization, UploadBarStatus } from './ProgressBar';
 interface progressHeaderProps {
     totalPercentage: number;
     uploadStatus: string;
@@ -11,6 +11,7 @@ interface progressHeaderProps {
     expanded: boolean;
     toggleButtonClick(): void;
     isCancelAllDisabled: boolean;
+    overallStatus: UploadBarStatus;
 }
 /**
  * Represents the ProgressHeader component.

@@ -10,6 +10,17 @@ export declare enum ProgressItemType {
     File = "file",
     Folder = "folder"
 }
+/**
+ * Overall result shown by the leading icon in the header once the upload has finished.
+ * SUCCESS = all items succeeded (green check)
+ * WARNING = mixed result, some succeeded and some failed (yellow warning)
+ * ERROR   = everything failed (red warning)
+ */
+export declare enum UploadBarStatus {
+    SUCCESS = "SUCCESS",
+    WARNING = "WARNING",
+    ERROR = "ERROR"
+}
 export interface IProgressState {
     progress: number;
     size: number;
@@ -57,6 +68,9 @@ interface progressBarProps {
     pauseButton?: Function;
     translation?: ProgressBarLocalization | undefined;
     isCancelAllDisabled: boolean;
+    overallStatus: UploadBarStatus;
+    expanded?: boolean;
+    onExpandedChange?(expanded: boolean): void;
 }
 /**
  * @component Renders a progress bar component.
